@@ -114,14 +114,13 @@ export function Navbar() {
 
           {/* Desktop Links */}
           <ul
+            className="nav-links"
             style={{
-              display: "flex",
               listStyle: "none",
               gap: "40px",
               margin: 0,
               padding: 0,
             }}
-            className="hidden md:flex"
           >
             {navLinks.map((link) => {
               const active = location.pathname === link.path;
@@ -203,14 +202,13 @@ export function Navbar() {
               )}
             </Link>
             <button
-              className="flex md:hidden"
+              className="hamburger-btn"
               onClick={() => setMenuOpen(!menuOpen)}
               style={{
                 background: "none",
                 border: "none",
                 cursor: "pointer",
                 color: isTransparent ? "#FBF5EF" : "#2C1A0E",
-                display: "flex",
                 alignItems: "center",
                 transition: "color 0.3s ease",
               }}
@@ -262,6 +260,12 @@ export function Navbar() {
       </nav>
 
       <style>{`
+        .nav-links { display: flex; }
+        .hamburger-btn { display: none; }
+        @media (max-width: 767px) {
+          .nav-links { display: none !important; }
+          .hamburger-btn { display: flex !important; align-items: center; }
+        }
         @media (max-width: 640px) {
           .announcement-bar {
             font-size: 10px !important;
