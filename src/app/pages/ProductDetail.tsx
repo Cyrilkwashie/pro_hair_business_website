@@ -40,10 +40,10 @@ export function ProductDetail() {
   };
 
   return (
-    <div style={{ backgroundColor: "#FBF5EF", minHeight: "100vh", paddingTop: "100px" }}>
+    <div style={{ backgroundColor: "#FBF5EF", minHeight: "100vh", paddingTop: "106px" }}>
 
       {/* Breadcrumb */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px 0" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "20px 20px 0" }}>
         <Link
           to="/shop"
           style={{
@@ -59,13 +59,13 @@ export function ProductDetail() {
       {/* Main Product Section */}
       <div
         style={{
-          maxWidth: "1280px", margin: "0 auto", padding: "32px 24px 80px",
+          maxWidth: "1280px", margin: "0 auto", padding: "28px 20px 80px",
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start",
         }}
         className="product-detail-grid"
       >
         {/* ── Image ── */}
-        <div style={{ position: "sticky", top: "120px" }}>
+        <div className="product-image-col" style={{ position: "sticky", top: "120px" }}>
           <div
             style={{
               borderRadius: "4px", overflow: "hidden",
@@ -242,7 +242,7 @@ export function ProductDetail() {
           )}
 
           {/* ── Add to Cart Button ── */}
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <div className="product-actions" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
             <button
               onClick={handleAddToCart}
               style={{
@@ -336,11 +336,33 @@ export function ProductDetail() {
 
       <style>{`
         @media (max-width: 768px) {
-          .product-detail-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .product-detail-grid {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-top: 16px !important;
+          }
+          .product-image-col {
+            position: static !important;
+          }
+          .product-image-col > div:first-child {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            aspect-ratio: 4/5 !important;
+          }
+          .product-image-col > div:nth-child(2) {
+            padding: 12px 20px 0;
+          }
+          .product-detail-grid > div:nth-child(2) {
+            padding: 28px 20px 100px;
+          }
           .related-grid { grid-template-columns: 1fr 1fr !important; }
+          .product-actions { flex-direction: column !important; }
+          .product-actions button { min-width: unset !important; width: 100% !important; flex: unset !important; }
         }
         @media (max-width: 480px) {
-          .related-grid { grid-template-columns: 1fr !important; }
+          .related-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
     </div>
