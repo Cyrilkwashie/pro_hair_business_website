@@ -26,8 +26,8 @@ const EMPTY_PRODUCT: Partial<Product> = {
 
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px", backgroundColor: "rgba(0,0,0,0.55)" }}>
-      <div style={{ backgroundColor: "#FBF5EF", borderRadius: "8px", width: "100%", maxWidth: "660px", maxHeight: "90vh", overflow: "auto", boxShadow: "0 32px 80px rgba(0,0,0,0.3)" }}>
+    <div className="admin-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.55)" }}>
+      <div className="admin-modal-card" style={{ backgroundColor: "#FBF5EF", borderRadius: "8px", width: "100%", maxWidth: "660px", maxHeight: "90vh", overflow: "auto", boxShadow: "0 32px 80px rgba(0,0,0,0.3)" }}>
         <div style={{ padding: "20px 24px", borderBottom: "1px solid rgba(196,154,108,0.2)", display: "flex", justifyContent: "space-between", alignItems: "center", position: "sticky", top: 0, backgroundColor: "#FBF5EF", zIndex: 1 }}>
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "22px", fontWeight: 500, color: "#2C1A0E", margin: 0 }}>{title}</h2>
           <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#8B6A4E", display: "flex" }}><X size={20} /></button>
@@ -135,14 +135,14 @@ export function AdminProducts() {
       </div>
 
       {/* Filters */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px", flexWrap: "wrap" }}>
+      <div className="admin-filters-bar" style={{ display: "flex", gap: "10px", marginBottom: "20px", flexWrap: "wrap" }}>
         <input
           placeholder="Search products…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{ ...inputStyle, maxWidth: "260px", padding: "9px 14px" }}
+          className="admin-search-input" style={{ ...inputStyle, padding: "9px 14px" }}
         />
-        <div style={{ display: "flex", gap: "6px" }}>
+        <div className="admin-filter-cats" style={{ display: "flex", gap: "6px" }}>
           {["All", ...CATEGORIES].map((cat) => (
             <button
               key={cat}
@@ -217,7 +217,7 @@ export function AdminProducts() {
       {/* Add/Edit Modal */}
       {modal && (
         <Modal title={modal === "add" ? "Add New Product" : "Edit Product"} onClose={closeModal}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 20px" }}>
+          <div className="admin-form-grid" style={{ display: "grid", gap: "0 20px" }}>
             <Field label="PRODUCT NAME">
               <input style={inputStyle} value={editing.name ?? ""} onChange={(e) => setEditing({ ...editing, name: e.target.value })} placeholder="e.g. Brazilian Body Wave Bundle" />
             </Field>
@@ -296,6 +296,22 @@ export function AdminProducts() {
           </div>
         </Modal>
       )}
+
+      <style>{`
+        .admin-modal-overlay { align-items: center; padding: 20px; }
+        .admin-form-grid { grid-template-columns: 1fr 1fr; }
+        .admin-search-input { max-width: 260px; }
+
+        @media (max-width: 640px) {
+          .admin-modal-overlay { padding: 8px; align-items: flex-end; }
+          .admin-modal-card { max-height: 94vh; border-radius: 12px 12px 0 0; }
+          .admin-form-grid { grid-template-columns: 1fr; }
+          .admin-filters-bar { flex-direction: column; }
+          .admin-search-input { max-width: 100%; width: 100%; }
+          .admin-filter-cats { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; width: 100%; }
+          .admin-filter-cats::-webkit-scrollbar { display: none; }
+        }
+      `}</style>
     </div>
   );
 }
