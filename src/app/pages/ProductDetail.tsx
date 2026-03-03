@@ -65,7 +65,7 @@ export function ProductDetail() {
         className="product-detail-grid"
       >
         {/* ── Image ── */}
-        <div className="product-image-col" style={{ position: "sticky", top: "120px" }}>
+        <div className="product-image-col">
           <div
             style={{
               borderRadius: "4px", overflow: "hidden",
@@ -335,6 +335,10 @@ export function ProductDetail() {
       )}
 
       <style>{`
+        .product-image-col {
+          position: sticky;
+          top: 120px;
+        }
         @media (max-width: 768px) {
           .product-detail-grid {
             grid-template-columns: 1fr !important;
@@ -344,7 +348,8 @@ export function ProductDetail() {
             padding-top: 16px !important;
           }
           .product-image-col {
-            position: static !important;
+            position: static;
+            top: auto;
           }
           .product-image-col > div:first-child {
             border-radius: 0 !important;
