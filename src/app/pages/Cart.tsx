@@ -124,6 +124,7 @@ export function Cart() {
               {items.map((item, index) => (
                 <div
                   key={`${item.product.id}-${item.size}-${item.color}-${index}`}
+                  className="cart-item"
                   style={{
                     display: "grid", gridTemplateColumns: "90px 1fr auto",
                     gap: "20px", padding: "24px 0", alignItems: "center",
@@ -344,6 +345,10 @@ export function Cart() {
       <style>{`
         @media (max-width: 860px) {
           .cart-layout { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .cart-item { grid-template-columns: 70px 1fr auto !important; gap: 14px !important; }
+          .cart-item h3 { font-size: 16px !important; }
         }
       `}</style>
     </div>

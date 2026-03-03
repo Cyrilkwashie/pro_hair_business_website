@@ -37,6 +37,7 @@ export function Navbar() {
     >
       {/* Announcement Bar */}
       <div
+        className="announcement-bar"
         style={{
           backgroundColor: "#2C1A0E",
           color: "#E8D5C0",
@@ -46,6 +47,9 @@ export function Navbar() {
           letterSpacing: "2px",
           fontFamily: "'Jost', sans-serif",
           fontWeight: 400,
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
         }}
       >
         FREE SHIPPING ON ORDERS OVER GH₵500 · USE CODE: HANNIE10 FOR 10% OFF
@@ -256,6 +260,15 @@ export function Navbar() {
           </div>
         )}
       </nav>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .announcement-bar {
+            font-size: 10px !important;
+            letter-spacing: 0.5px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

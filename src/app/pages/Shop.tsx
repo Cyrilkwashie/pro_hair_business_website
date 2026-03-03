@@ -97,7 +97,7 @@ export function Shop() {
           }}
         >
           {/* Category Filters */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", padding: "12px 0" }}>
+          <div className="category-filters" style={{ display: "flex", gap: "8px", flexWrap: "wrap", padding: "12px 0" }}>
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -173,6 +173,7 @@ export function Shop() {
               gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
               gap: "28px",
             }}
+            className="product-grid"
           >
             {filtered.map((product) => (
               <ShopProductCard key={product.id} product={product} />
@@ -255,6 +256,17 @@ export function Shop() {
           </a>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .card-mobile-btn { display: flex !important; }
+        }
+        @media (max-width: 640px) {
+          .category-filters { flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; padding-right: 8px !important; }
+          .category-filters::-webkit-scrollbar { display: none; }
+          .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -446,6 +458,30 @@ function ShopProductCard({ product }: { product: Product }) {
           )}
         </div>
       </div>
+
+      {/* Always-visible mobile link */}
+      <Link
+        to={`/product/${product.id}`}
+        className="card-mobile-btn"
+        style={{
+          display: "none",
+          width: "100%",
+          justifyContent: "center",
+          padding: "12px",
+          backgroundColor: "#2C1A0E",
+          color: "#FBF5EF",
+          fontFamily: "'Jost', sans-serif",
+          fontSize: "10px",
+          letterSpacing: "2.5px",
+          fontWeight: 600,
+          textDecoration: "none",
+          borderTop: "1px solid rgba(196,154,108,0.2)",
+          textAlign: "center",
+          boxSizing: "border-box" as const,
+        }}
+      >
+        VIEW DETAILS
+      </Link>
     </div>
   );
 }

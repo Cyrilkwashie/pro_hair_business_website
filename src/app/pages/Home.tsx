@@ -138,6 +138,7 @@ export function Home() {
 
         {/* Hero Content */}
         <div
+          className="hero-content"
           style={{
             position: "relative",
             zIndex: 10,
@@ -264,7 +265,7 @@ export function Home() {
             </div>
 
             {/* Stats */}
-            <div style={{ display: "flex", gap: "40px", marginTop: "60px" }}>
+            <div className="hero-stats" style={{ display: "flex", gap: "40px", marginTop: "60px" }}>
               {[
                 { value: "500+", label: "Happy Clients" },
                 { value: "100%", label: "Virgin Hair" },
@@ -673,6 +674,7 @@ export function Home() {
           />
         </div>
         <div
+          className="about-split-text"
           style={{
             backgroundColor: "#2C1A0E",
             padding: "70px 60px",
@@ -801,6 +803,7 @@ export function Home() {
 
           {/* Active testimonial */}
           <div
+            className="testimonial-card"
             style={{
               backgroundColor: "#FFF9F4",
               border: "1px solid rgba(196,154,108,0.25)",
@@ -1029,9 +1032,16 @@ export function Home() {
         @media (max-width: 768px) {
           .about-split { grid-template-columns: 1fr !important; }
           .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; height: 420px !important; }
+          .about-split-text { padding: 50px 30px !important; }
+        }
+        @media (max-width: 640px) {
+          .hero-content { padding-left: 20px !important; padding-right: 20px !important; }
+          .hero-stats { gap: 20px !important; margin-top: 40px !important; }
+          .testimonial-card { padding: 30px 20px 28px !important; }
         }
         @media (max-width: 480px) {
           .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; height: 360px !important; }
+          .hero-stats { flex-wrap: wrap; gap: 16px !important; }
         }
       `}</style>
     </div>
